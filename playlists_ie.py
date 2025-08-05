@@ -134,7 +134,8 @@ class PlaylistLoadSavePlugin(GObject.Object, Peas.Activatable):
                 logging.error("importing " + pl_uri)
 
                 for playlist in pl_man.get_playlists():
-                    if playlist.props.name == "Unnamed playlist":  # that's the one we imported last , so set it's name
+                    # that's the one we imported last, so set it's name depending on rhythmbox version without m3u extention.
+                    if playlist.props.name in ("Unnamed playlist", pl_file):
                         playlist.props.name = pl_name
 
                 processed_pl_files = processed_pl_files + 1
@@ -166,7 +167,8 @@ class PlaylistLoadSavePlugin(GObject.Object, Peas.Activatable):
                 logging.info("importing " + pl_uri)
 
                 for playlist in pl_man.get_playlists():
-                    if playlist.props.name == "Unnamed playlist":  # that's the one we imported last, so set it's name
+                    # that's the one we imported last, so set it's name depending on rhythmbox version without m3u extention.
+                    if playlist.props.name in ("Unnamed playlist", pl_file):
                         playlist.props.name = pl_name
 
                 processed_pl_files = processed_pl_files + 1
